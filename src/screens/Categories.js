@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import axios from 'axios';
+import CategoryCard from '../components/CategoryCard';
 
 const Categories = props => {
   const categoriesUrl =
@@ -19,12 +20,15 @@ const Categories = props => {
       console.log(err);
     }
   };
+
+  const renderCategory = ({item}) => <CategoryCard categoryData={item} />;
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         keyExtractor={(item, index) => item.idCategory}
         data={recipeList}
-        renderItem={({item}) => <Text>{item.strCategory}</Text>}
+        renderItem={renderCategory}
       />
     </SafeAreaView>
   );

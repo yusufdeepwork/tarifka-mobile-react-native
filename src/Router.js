@@ -11,6 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Categories from './screens/Categories';
+import Recipes from './screens/Recipes';
 const Stack = createStackNavigator();
 
 const Router = () => {
@@ -24,6 +25,11 @@ const Router = () => {
           },
         }}>
         <Stack.Screen name="Categories" component={Categories} />
+        <Stack.Screen
+          name="Recipes"
+          component={Recipes}
+          options={({route}) => ({title: route.params.name})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

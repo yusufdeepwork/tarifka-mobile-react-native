@@ -5,20 +5,28 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
-const CategoryCard = ({categoryData}) => {
+const CategoryCard = ({categoryData, navigation}) => {
   return (
-    <TouchableWithoutFeedback onPress={() => console.log('on pressed')}>
-      <View style={styles.container}>
-        <Image
-          resizeMode="contain"
-          source={{uri: categoryData.strCategoryThumb}}
-          style={styles.image}
-        />
-        <Text style={styles.name}>{categoryData.strCategory}</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Recipes', {
+          name: categoryData.strCategory,
+        })
+      }>
+      <React.Fragment>
+        <View style={styles.container}>
+          <Image
+            resizeMode="contain"
+            source={{uri: categoryData.strCategoryThumb}}
+            style={styles.image}
+          />
+          <Text style={styles.name}>{categoryData.strCategory}</Text>
+        </View>
+      </React.Fragment>
+    </TouchableOpacity>
   );
 };
 export default CategoryCard;

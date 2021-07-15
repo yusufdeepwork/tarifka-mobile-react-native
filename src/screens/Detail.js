@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {
   Image,
-  SafeAreaView,
   Text,
   View,
   StyleSheet,
   ScrollView,
+  Button,
+  Linking,
 } from 'react-native';
 import axios from 'axios';
+import OpenURLButton from '../components/OpenURLButton';
 
 const Detail = ({route}) => {
   const categoriesUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${route.params.idMeal}`;
@@ -36,6 +38,10 @@ const Detail = ({route}) => {
             <Text style={styles.countryName}>{mealDetail.strArea}</Text>
           </View>
           <Text style={styles.ingredients}>{mealDetail.strInstructions}</Text>
+          <OpenURLButton
+            url={mealDetail.strYoutube}
+            children={'Watch on Youtube'}
+          />
         </>
       )}
     </ScrollView>

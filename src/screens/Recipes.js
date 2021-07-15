@@ -3,9 +3,8 @@ import {FlatList, SafeAreaView, Text, StyleSheet} from 'react-native';
 import axios from 'axios';
 import MealCard from '../components/MealCard';
 
-const Recipes = ({route}) => {
+const Recipes = ({route, navigation}) => {
   const categoriesUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${route.params.name}`;
-  console.log('url', categoriesUrl);
   const [mealsList, setMealsList] = useState();
 
   useEffect(() => {
@@ -15,14 +14,15 @@ const Recipes = ({route}) => {
   const fetchRecipes = async () => {
     try {
       const {data} = await axios.get(categoriesUrl);
-      console.log('data', data);
       setMealsList(data.meals);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const renderMeal = ({item}) => <MealCard meal={item} />;
+  const renderMeal = ({item}) => (
+    <MealCard meal={item} navigation={navigation} />
+  );
 
   return (
     <SafeAreaView style={styles.container}>

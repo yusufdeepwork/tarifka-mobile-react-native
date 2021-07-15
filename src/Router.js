@@ -12,6 +12,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Categories from './screens/Categories';
 import Recipes from './screens/Recipes';
+import Detail from './screens/Detail';
 const Stack = createStackNavigator();
 
 const Router = () => {
@@ -30,6 +31,7 @@ const Router = () => {
           component={Recipes}
           options={({route}) => ({title: route.params.name})}
         />
+        <Stack.Screen name="Detail" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image, TouchableOpacity, StyleSheet, View, Text} from 'react-native';
 
-const MealCard = ({meal}) => {
+const MealCard = ({meal, navigation}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Detail', {idMeal: meal.idMeal})}
+      style={styles.container}>
       <Image
         resizeMode="cover"
         source={{uri: meal.strMealThumb}}

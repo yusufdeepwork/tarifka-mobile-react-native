@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, SafeAreaView, Text, StyleSheet} from 'react-native';
 import axios from 'axios';
+import MealCard from '../components/MealCard';
 
 const Recipes = ({route}) => {
   const categoriesUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${route.params.name}`;
@@ -21,7 +22,7 @@ const Recipes = ({route}) => {
     }
   };
 
-  const renderMeal = ({item}) => <Text>{item.strMeal}</Text>;
+  const renderMeal = ({item}) => <MealCard meal={item} />;
 
   return (
     <SafeAreaView style={styles.container}>
